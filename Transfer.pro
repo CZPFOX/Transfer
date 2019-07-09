@@ -8,7 +8,7 @@ QT       -= gui
 QT       += serialport
 TARGET = Transfer
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += staticlib debug_and_release
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings

@@ -1,5 +1,6 @@
 #include "transfer.h"
 #include <QTime>
+#include <QCoreApplication>
 Transfer::Transfer(QObject *parent):QObject(parent)
 {
 }
@@ -26,9 +27,9 @@ void Transfer::write(const QByteArrayList&list,int ms)
 
 void Transfer::delay_ms(int ms)
 {
-    QTime die = QTime::currentTime().addMSecs(ms);
-    while (1) {
-        if(die<QTime::currentTime())
-            break;
+    QTime dieTime = QTime::currentTime().addMSecs(ms);
+    while(QTime::currentTime() < dieTime)
+    {
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 }
