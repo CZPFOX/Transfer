@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 Transfer::Transfer(QObject *parent):QObject(parent)
 {
+    connect(&sp,&QSerialPort::readyRead,this,&Transfer::slot_read);
 }
 
 QSerialPort*Transfer::serialPort()
@@ -23,6 +24,10 @@ void Transfer::write(const QByteArrayList&list,int ms)
         write(data);
         delay_ms(ms);
     }
+}
+void Transfer::slot_read()
+{
+    emit signal_response(sp.readAll());
 }
 
 void Transfer::delay_ms(int ms)

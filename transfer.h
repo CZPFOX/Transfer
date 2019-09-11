@@ -12,6 +12,8 @@ public:
 signals:
     void signal_request(const QByteArray&data);
     void signal_response(const QByteArray&data);
+private slots:
+    void slot_read();
 private:
     QSerialPort sp;
     void delay_ms(int ms);
